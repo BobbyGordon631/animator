@@ -1,0 +1,20 @@
+# Gleam's build cache; the site is built into docs/ by deploy.sh.
+build/
+
+# Private submission records and bundles: kept on this computer, not published.
+.server_logs/
+.provenance
+.provenance-manifest
+session-*.slog*
+manifest.json
+manifest.sig
+grader.json
+*.zip
+
+# Course-provided tests and graders, which the site doesn't need.
+test/
+grading/
+
+# Editor and OS files.
+.vscode/
+.DS_Store

@@ -11,8 +11,11 @@ cd "$(dirname "$0")"
 gleam build --target javascript
 
 # Copy the compiled JavaScript, leaving out the course's tests, the dev server,
-# the test framework, and the compiler's cache, none of which the site needs.
-excludes=(--exclude '_gleam_artefacts' --exclude 'gleeunit' --exclude 'gleam@@private_main_*')
+# the test framework, the compiler's cache, the libraries' Erlang sources, and
+# Lustre's priv/ (server-component bundles, which a browser-only app never
+# loads), none of which the site needs.
+excludes=(--exclude '_gleam_artefacts' --exclude 'gleeunit' --exclude 'gleam@@private_main_*'
+  --exclude 'priv' --exclude '*.erl' --exclude '*.hrl')
 for f in test/* dev/*; do
   name="$(basename "$f")"
   name="${name%.*}"
@@ -20,7 +23,10 @@ for f in test/* dev/*; do
 done
 rm -rf docs/javascript
 mkdir -p docs/javascript
-rsync -a "${excludes[@]}" build/dev/javascript/ docs/javascript/
+# --copy-links copies what any symlink points to rather than the link: the
+# build links into this computer's folders, which don't exist on GitHub, and
+# GitHub Pages fails to publish a site with a broken link in it.
+rsync -a --copy-links "${excludes[@]}" build/dev/javascript/ docs/javascript/
 
 # The page and its stylesheet, with the script path pointing into docs/. Every
 # path is relative, since the site is served under /animator/.

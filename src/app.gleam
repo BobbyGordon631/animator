@@ -31,7 +31,7 @@ import shape.{type Path}
 pub const public_url = "https://kksolve.com/animator/"
 
 /// Set to True if you would like your app's URL included in the course gallery.
-pub const include_app_in_gallery = False
+pub const include_app_in_gallery = True
 
 /// A link to your video from Problem 14, which anyone with the link can watch.
 pub const video_url = ""

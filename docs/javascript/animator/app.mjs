@@ -306,7 +306,7 @@ export const public_url = "https://kksolve.com/animator/";
 /**
  * Set to True if you would like your app's URL included in the course gallery.
  */
-export const include_app_in_gallery = false;
+export const include_app_in_gallery = true;
 
 /**
  * A link to your video from Problem 14, which anyone with the link can watch.
@@ -1459,10 +1459,10 @@ export function main() {
       "Pattern match failed, no pattern matched the value.",
       {
         value: $,
-        start: 23696,
-        end: 23745,
-        pattern_start: 23707,
-        pattern_end: 23712
+        start: 23695,
+        end: 23744,
+        pattern_start: 23706,
+        pattern_end: 23711
       }
     )
   }
